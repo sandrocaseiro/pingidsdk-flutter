@@ -11,7 +11,7 @@ Add `pingidsdk` as as dependency and download the [PingID SDK Integration Kit](h
 To use the authentication flows, you will also need a linked Firebase project.
 
 Import the package in your .dart file and get the PingIDSDK instance
-```
+```dart
 import 'package:pingidsdk/pingidsdk.dart' as ping;
 
 final ping.PingIDSDK _ping = ping.PingIDSDK.instance;
@@ -46,7 +46,7 @@ void dispose() {
 
 For instructions on how does PingID SDK works, please check Ping Identity [documentation](https://apidocs.pingidentity.com/pingid-sdk/guide/mobile-api/).
 
-## Instalation
+## Installation
 
 ### Android integration
 
