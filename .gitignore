@@ -1,0 +1,13 @@
+.dart_tool
+.idea
+example/android/PingID_SDK
+*.iml
+example/android/app/google-services.json
+android/.settings
+example/android/.settings
+example/android/app/.settings
+example/android/app/.project
+example/android/app/.classpath
+example/android/.project
+android/.classpath
+android/.project

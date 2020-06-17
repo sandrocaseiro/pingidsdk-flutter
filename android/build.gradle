@@ -1,0 +1,64 @@
+group 'com.sandrocaseiro.pingidsdk'
+version '0.0.1'
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+buildscript {
+    ext.kotlin_version = '1.3.72'
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    defaultConfig {
+        minSdkVersion 16
+        buildConfigField 'String', 'PING_APPLICATION_ID', '"' + localProperties.getProperty('ping.applicationId') + '"'
+        buildConfigField 'String', 'PING_PUSH_SENDER_ID', '"' + localProperties.getProperty('ping.pushSenderId') + '"'
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+""
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //PingID SDK
+    implementation "org.slf4j:slf4j-api:1.7.30"
+    implementation 'com.github.tony19:logback-android:2.0.0'
+    implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'commons-codec:commons-codec:1.14'
+    implementation 'org.bitbucket.b_c:jose4j:0.7.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation project(path: ':PingID_SDK')
+}
