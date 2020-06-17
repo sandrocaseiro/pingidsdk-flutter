@@ -1,3 +1,7 @@
+## 0.0.3
+
+* No changes made
+
 ## 0.0.2
 
 * Fixed events that received Bundle argument
