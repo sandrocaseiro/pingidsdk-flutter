@@ -1,6 +1,7 @@
 name: pingidsdk
-description: Flutter plugin for PingID SDK
+description: Flutter plugin to support PingID SDK Integration. Currently implemented all events and mostly methods of the SDK v1.11. 
 version: 0.0.3
+homepage: https://github.com/sandrocaseiro/pingidsdk-flutter
 repository: https://github.com/sandrocaseiro/pingidsdk-flutter
 
 environment:

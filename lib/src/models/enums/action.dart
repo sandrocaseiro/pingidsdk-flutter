@@ -1,6 +1,1 @@
-enum Action {
-  NONE,
-  APPROVE,
-  DENY,
-  BLOCK
-}
+enum Action { NONE, APPROVE, DENY, BLOCK }
