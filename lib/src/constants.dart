@@ -1,4 +1,3 @@
-
 class NativeMethods {
   static const String GET_PAYLOAD = 'getPayload';
   static const String SEND_SERVER_PAYLOAD = 'serverPayload';
@@ -33,7 +32,8 @@ class AuthenticationSelectionArgs {
 class PingEvents {
   //Pairing
   static const String PAIRING_OPTIONS_REQUIRED = 'onPairingOptionsRequired';
-  static const String PAIRING_OPTIONS_REQUIRED_WITH_PASSWORD = "onPairingOptionsRequiredWithPasscode";
+  static const String PAIRING_OPTIONS_REQUIRED_WITH_PASSWORD =
+      "onPairingOptionsRequiredWithPasscode";
   static const String PAIRING_PROGRESS = "onPairingProgress";
   static const String PAIRING_COMPLETED = "onPairingCompleted";
   static const String IGNORE_DEVICE_COMPLETED = "onIgnoreDeviceCompleted";
@@ -45,10 +45,12 @@ class PingEvents {
   static const String ONE_TIME_PASSWORD_CHANGED = "onOneTimePasscodeChanged";
   static const String AUTHENTICATION_TOKEN_STATUS = "authenticationTokenStatus";
   //General
-  static const String SERVICE_PAYLOAD_RECEIVED_WITH_STATUS_DONE = "onServicePayloadReceivedWithStatusDone";
+  static const String SERVICE_PAYLOAD_RECEIVED_WITH_STATUS_DONE =
+      "onServicePayloadReceivedWithStatusDone";
   static const String LOGS_SENT_TO_SERVER = "onLogsSentToServer";
   static const String GENERAL_MESSAGE = "onGeneralMessage";
-  static const String GOOGLE_PLAY_SERVICES_STATUS_RECEIVED = "onGooglePlayServicesStatusReceived";
+  static const String GOOGLE_PLAY_SERVICES_STATUS_RECEIVED =
+      "onGooglePlayServicesStatusReceived";
   static const String ERROR = "onError";
 
   PingEvents._();
@@ -180,16 +182,26 @@ class ErrorValues {
   static const String INTERNAL_ERROR = 'PIDInternalError';
   static const String MISSING_PERMISSIONS = 'PIDMissingPermissions';
   static const String DEVICE_TOKEN_MISSING = 'PIDErrorDeviceTokenIsMissing';
-  static const String EXPIRED_OR_WRONG_AUTH_TOKEN = 'PIDErrorExpiredOrWrongAuthToken';
-  static const String WRONG_APP_ID_FROM_AUTH_TOKEN = 'PIDErrorWrongAppIDFromAuthToken';
-  static const String WRONG_ACCOUNT_ID_FROM_AUTH_TOKEN = 'PIDErrorWrongAccountIDFromAuthToken';
+  static const String EXPIRED_OR_WRONG_AUTH_TOKEN =
+      'PIDErrorExpiredOrWrongAuthToken';
+  static const String WRONG_APP_ID_FROM_AUTH_TOKEN =
+      'PIDErrorWrongAppIDFromAuthToken';
+  static const String WRONG_ACCOUNT_ID_FROM_AUTH_TOKEN =
+      'PIDErrorWrongAccountIDFromAuthToken';
   static const String USER_IS_SUSPENDED = 'PIDErrorUserIsSuspended';
-  static const String USERNAME_NOT_PAIRED_FOR_TOKEN = 'PIDErrorUsernameNotPairedForToken';
+  static const String USERNAME_NOT_PAIRED_FOR_TOKEN =
+      'PIDErrorUsernameNotPairedForToken';
   static const String AUTH_TOKEN_ALREADY_USED = 'PIDErrorAuthTokenAlreadyUsed';
   static const String SERVER_RESPONSE = 'PIDErrorServerResponse';
   static const String DEVICE_ROOTED = 'PIDErrorDeviceRooted';
   static const String WITH_REPAIRING = 'PIDErrorWithRepairing';
   static const String WITH_REPAIRING_TEST_OTP = 'PIDErrorWithRepairingTestOtp';
+  //iOS Only
+  static const String REACHABILITY = "PIDErrorReachability";
+  static const String SERVER_INTERNAL = "PIDErrorServerInternal";
+  static const String WITH_SERVER_PAYLOAD = "PIDErrorWithServerPayload";
+  static const String SELECTION_IS_MISSING = "PIDErrorSelectionIsMissing";
+  static const String MISSING_APP_ID = "PIDErrorMissingAppId";
 
   ErrorValues._();
 }

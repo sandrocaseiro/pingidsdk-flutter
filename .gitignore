@@ -11,3 +11,6 @@ example/android/app/.classpath
 example/android/.project
 android/.classpath
 android/.project
+.packages
+example/ios/Runner/Runner.entitlements
+ios/PingID_SDK.xcframework

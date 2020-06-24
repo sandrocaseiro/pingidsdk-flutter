@@ -1,5 +1,1 @@
-enum ActionStatus {
-  SUCCESS,
-  FAILURE,
-  RE_PAIR_SUCCESS
-}
+enum ActionStatus { SUCCESS, FAILURE, RE_PAIR_SUCCESS }

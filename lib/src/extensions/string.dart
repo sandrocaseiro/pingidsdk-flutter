@@ -88,7 +88,16 @@ extension EnumParsing on String {
         return Error.WITH_REPAIRING;
       case ErrorValues.WITH_REPAIRING_TEST_OTP:
         return Error.WITH_REPAIRING_TEST_OTP;
-
+      case ErrorValues.REACHABILITY:
+        return Error.REACHABILITY;
+      case ErrorValues.SERVER_INTERNAL:
+        return Error.SERVER_INTERNAL;
+      case ErrorValues.WITH_SERVER_PAYLOAD:
+        return Error.WITH_SERVER_PAYLOAD;
+      case ErrorValues.SELECTION_IS_MISSING:
+        return Error.SELECTION_IS_MISSING;
+      case ErrorValues.MISSING_APP_ID:
+        return Error.MISSING_APP_ID;
       case ErrorValues.UNKNOWN:
       default:
         return Error.UNKNOWN;

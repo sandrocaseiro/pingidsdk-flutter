@@ -94,7 +94,16 @@ extension ErrorNativeParsing on Error {
         return ErrorValues.WITH_REPAIRING;
       case Error.WITH_REPAIRING_TEST_OTP:
         return ErrorValues.WITH_REPAIRING_TEST_OTP;
-
+      case Error.REACHABILITY:
+        return ErrorValues.REACHABILITY;
+      case Error.SERVER_INTERNAL:
+        return ErrorValues.SERVER_INTERNAL;
+      case Error.WITH_SERVER_PAYLOAD:
+        return ErrorValues.WITH_SERVER_PAYLOAD;
+      case Error.SELECTION_IS_MISSING:
+        return ErrorValues.SELECTION_IS_MISSING;
+      case Error.MISSING_APP_ID:
+        return ErrorValues.MISSING_APP_ID;
       case Error.UNKNOWN:
       default:
         return ErrorValues.UNKNOWN;

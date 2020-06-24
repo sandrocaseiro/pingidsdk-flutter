@@ -74,7 +74,6 @@ class PingEventHandler(private val channel: MethodChannel) : PingID.PingIdSdkEve
 
     //Authentication Events
     override fun onAuthenticationRequired(data: Bundle?) {
-        Log.d("PingEvent", "onAuthenticationRequired: $data")
         mainHandler.post {
             channel.invokeMethod(FlutterMethods.AUTHENTICATION_REQUIRED, mapOf(
                 AuthenticationRequiredArgs.DATA to data?.toMap()
@@ -112,7 +111,6 @@ class PingEventHandler(private val channel: MethodChannel) : PingID.PingIdSdkEve
     }
 
     override fun authenticationTokenStatus(data: Bundle?, error: PingID.PIDErrorDomain?) {
-        Log.d("PingEvent", "authenticationTokenStatus: Bundle: $data | Error: $error")
         mainHandler.post {
             channel.invokeMethod(FlutterMethods.AUTHENTICATION_TOKEN_STATUS, mapOf(
                 AuthenticationTokenStatusArgs.DATA to data?.toMap(),

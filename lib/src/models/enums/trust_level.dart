@@ -1,5 +1,1 @@
-enum TrustLevel {
-  PRIMARY,
-  TRUSTED,
-  IGNORE
-}
+enum TrustLevel { PRIMARY, TRUSTED, IGNORE }

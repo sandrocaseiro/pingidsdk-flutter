@@ -11,20 +11,27 @@ import '../models/pairing_completed.dart';
 extension PingEventArgsParsing on MethodCall {
   PairingOptionsRequired parsePairingOptionsRequired() {
     final args = this.arguments;
-    final trustLevelsArg = args[PairingOptionsRequiredArgs.AVAILABLE_TRUST_LEVELS] as List;
+    final trustLevelsArg =
+        args[PairingOptionsRequiredArgs.AVAILABLE_TRUST_LEVELS] as List;
 
     final deviceName = args[PairingOptionsRequiredArgs.DEVICE_NAME];
-    final trustLevels = trustLevelsArg?.map((t) => t.toString().parseTrustLevel())?.toList() ?? [];
+    final trustLevels =
+        trustLevelsArg?.map((t) => t.toString().parseTrustLevel())?.toList() ??
+            [];
 
     return PairingOptionsRequired(trustLevels, deviceName);
   }
 
   PairingOptionsRequired parsePairingOptionsRequiredWithPassword() {
     final args = this.arguments;
-    final trustLevelsArg = args[PairingOptionsRequiredWithPasswordArgs.AVAILABLE_TRUST_LEVELS] as List;
-    
+    final trustLevelsArg =
+        args[PairingOptionsRequiredWithPasswordArgs.AVAILABLE_TRUST_LEVELS]
+            as List;
+
     final deviceName = args[PairingOptionsRequiredWithPasswordArgs.DEVICE_NAME];
-    final trustLevels = trustLevelsArg?.map((t) => t.toString().parseTrustLevel())?.toList() ?? [];
+    final trustLevels =
+        trustLevelsArg?.map((t) => t.toString().parseTrustLevel())?.toList() ??
+            [];
 
     return PairingOptionsRequired(trustLevels, deviceName);
   }
@@ -33,7 +40,8 @@ extension PingEventArgsParsing on MethodCall {
 
   PairingCompleted parsePairingCompleted() {
     final args = this.arguments;
-    final actionStatus = args[PairingCompletedArgs.ACTION_STATUS].toString().parseActionStatus();
+    final actionStatus =
+        args[PairingCompletedArgs.ACTION_STATUS].toString().parseActionStatus();
     final error = args[PairingCompletedArgs.ERROR]?.toString()?.parseError();
 
     return PairingCompleted(actionStatus, error);
@@ -41,7 +49,9 @@ extension PingEventArgsParsing on MethodCall {
 
   IgnoreDeviceCompleted parseIgnoreDeviceCompleted() {
     final args = this.arguments;
-    final actionStatus = args[IgnoreDeviceCompletedArgs.ACTION_STATUS].toString().parseActionStatus();
+    final actionStatus = args[IgnoreDeviceCompletedArgs.ACTION_STATUS]
+        .toString()
+        .parseActionStatus();
     final error = args[IgnoreDeviceCompletedArgs.ERROR].toString().parseError();
 
     return IgnoreDeviceCompleted(actionStatus, error);
@@ -55,26 +65,34 @@ extension PingEventArgsParsing on MethodCall {
 
   AuthenticationCompleted parseAuthenticationCompleted() {
     final args = this.arguments;
-    final actionStatus = args[AuthenticationCompletedArgs.ACTION_STATUS].toString().parseActionStatus();
-    final action = args[AuthenticationCompletedArgs.ACTION].toString().parseAction();
-    final error = args[AuthenticationCompletedArgs.ERROR].toString().parseError();
+    final actionStatus = args[AuthenticationCompletedArgs.ACTION_STATUS]
+        .toString()
+        .parseActionStatus();
+    final action =
+        args[AuthenticationCompletedArgs.ACTION].toString().parseAction();
+    final error =
+        args[AuthenticationCompletedArgs.ERROR].toString().parseError();
 
-    return AuthenticationCompleted(actionStatus: actionStatus, action: action, error: error);
+    return AuthenticationCompleted(
+        actionStatus: actionStatus, action: action, error: error);
   }
 
-  String parseOneTimePasswordChanged() => this.arguments[OneTimePasswordChangedArgs.OTP];
+  String parseOneTimePasswordChanged() =>
+      this.arguments[OneTimePasswordChangedArgs.OTP];
 
   dynamic parseAuthenticationTokenStatus() {
     final args = this.arguments;
     final data = args[AuthenticationTokenStatusArgs.DATA];
-    final error = args[AuthenticationTokenStatusArgs.ERROR].toString().parseError();
+    final error =
+        args[AuthenticationTokenStatusArgs.ERROR].toString().parseError();
 
-    return { data, error };
+    return {data, error};
   }
 
   LogsSentToServer parseLogsSentToServer() {
     final args = this.arguments;
-    final actionStatus = args[LogsSentToServerArgs.ACTION_STATUS].toString().parseActionStatus();
+    final actionStatus =
+        args[LogsSentToServerArgs.ACTION_STATUS].toString().parseActionStatus();
     final supportId = args[LogsSentToServerArgs.SUPPORT_ID];
 
     return LogsSentToServer(actionStatus, supportId);
@@ -82,13 +100,14 @@ extension PingEventArgsParsing on MethodCall {
 
   String parseGeneralMessage() => this.arguments[GeneralMessageArgs.MESSAGE];
 
-  int parseGooglePlayServicesStatusReceived() => this.arguments[GooglePlayServicesStatusReceivedArgs.STATUS];
+  int parseGooglePlayServicesStatusReceived() =>
+      this.arguments[GooglePlayServicesStatusReceivedArgs.STATUS];
 
   dynamic parseError() {
     final args = this.arguments;
     final throwable = args[ErrorArgs.THROWABLE];
     final description = args[ErrorArgs.DESCRIPTION];
 
-    return { throwable, description };
+    return {throwable, description};
   }
 }
