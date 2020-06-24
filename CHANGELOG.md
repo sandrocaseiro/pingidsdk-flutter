@@ -1,3 +1,11 @@
+## 1.0.0
+
+* First release
+
+## 0.1.0
+
+* Added support for iOS
+
 ## 0.0.3
 
 * No changes made
