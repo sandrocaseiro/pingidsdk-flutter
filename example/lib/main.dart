@@ -19,7 +19,8 @@ class _MyAppState extends State<MyApp> {
 
   String _serverPayload = '';
   bool _isTrusted = false;
-  
+  bool _needPair = false;
+  bool _needAuthorization = false;
 
   @override
   void initState() {
@@ -38,29 +39,30 @@ class _MyAppState extends State<MyApp> {
   Future<void> init() async {
     if (!mounted) return;
 
-    _pairingOptionsRequiredSub = _ping.pairingOptionsRequired.listen((args) async {
+    _pairingOptionsRequiredSub =
+        _ping.pairingOptionsRequired.listen((args) async {
       //Automatically Approving Pairing
-      await _ping.pairingSelection(_username, ping.TrustLevel.TRUSTED, ping.Action.APPROVE);
+      setState(() {
+        _needPair = true;
+      });
     });
 
     _pairingCompletedSub = _ping.pairingCompleted.listen((args) async {
       bool isTrusted = await _ping.deviceIsTrusted;
       setState(() {
         _isTrusted = isTrusted;
+        //_needPair = false;
       });
     });
 
     _authRequiredSub = _ping.authenticationRequired.listen((args) async {
-        //Automatically Approving Authentication
-        await _ping.authenticationSelection(_username, ping.Action.APPROVE);
+      //Automatically Approving Authentication
+      setState(() {
+        _needAuthorization = true;
+      });
     });
 
-    String payload;
     bool isTrusted = await _ping.deviceIsTrusted;
-    if (!isTrusted)
-      payload = await _ping.payload;
-
-    print(payload);
 
     setState(() {
       _isTrusted = isTrusted;
@@ -76,6 +78,21 @@ class _MyAppState extends State<MyApp> {
     print(payload);
   }
 
+  Future<void> _pair() async {
+    await _ping.pairingSelection(
+        _username, ping.TrustLevel.TRUSTED, ping.Action.APPROVE);
+    setState(() {
+      _needPair = false;
+    });
+  }
+
+  Future<void> _authorize() async {
+    await _ping.authenticationSelection(_username, ping.Action.APPROVE);
+    setState(() {
+      _needAuthorization = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -87,6 +104,21 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Text('Is Trusted: ${_isTrusted ? "YES" : "NO"}'),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                color: Theme.of(context).primaryColor,
+                onPressed: _generatePayload,
+                child: const Text('Generate Payload'),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               TextField(
                 onChanged: (value) => setState(() => _serverPayload = value),
               ),
@@ -96,15 +128,26 @@ class _MyAppState extends State<MyApp> {
               RaisedButton(
                 color: Theme.of(context).primaryColor,
                 onPressed: _sendServerPayload,
-                child: const Text('Send payload'),
+                child: const Text('Confirm payload'),
+              ),
+              SizedBox(
+                height: 20,
               ),
               SizedBox(
                 height: 20,
               ),
               RaisedButton(
                 color: Theme.of(context).primaryColor,
-                onPressed: _isTrusted ? _generatePayload : null,
-                child: const Text('Authentication Payload'),
+                onPressed: _needPair ? _pair : null,
+                child: const Text('Pair'),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                color: Theme.of(context).primaryColor,
+                onPressed: _needAuthorization ? _authorize : null,
+                child: const Text('Authorization'),
               ),
             ],
           ),

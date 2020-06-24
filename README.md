@@ -1,6 +1,6 @@
 # pingidsdk plugin
 
-A Flutter plugin to use the [PingID SDK](https://www.pingidentity.com/en/lp/b/pingid-sdk.html).
+Flutter plugin to support [PingID SDK](https://www.pingidentity.com/en/lp/b/pingid-sdk.html) Integration. Currently implemented all events and mostly methods of the SDK v1.11. 
 
 [![pub package](https://img.shields.io/pub/v/pingidsdk.svg)](https://pub.dev/packages/pingidsdk)
 
@@ -82,4 +82,32 @@ ping.pushSenderId=YOUR_PUSH_SENDER_ID
 
 ### iOS Integration
 
-Not yet supported
+1. Create the [APNS Certificates](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html) from your Apple Developer account and upload them to PingOne.
+
+2. On your project navigator, go to General and then drag the PingID_SDK.xcframework to Frameworks, Libraries, and Embedded Content
+
+3. Go to Signing & Capabilities and enable *Push Notifications* and *Background Modes -> Remote notifications*
+
+4. You need to create as bridge to PingID ObjC code, you can use the file created by Flutter for that `Runner-Bridging-Header.h`
+```objectivec
+#import "GeneratedPluginRegistrant.h"
+#import <PingID_SDK/PingId.h>
+```
+
+5. Add `NSLocationWhenInUseUsageDescription` to your project's `Info.plist`
+
+6. Create a file called `Ping.plist` with your Ping configuration:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Your PingID SDK Application ID -->
+    <key>APPLICATION_ID</key>
+    <string>APP_ID</string>
+    <!-- Use Sandbox APNS certificate -->
+    <key>DEBUG_CERTIFICATE</key>
+    <true/>
+</dict>
+</plist>
+```

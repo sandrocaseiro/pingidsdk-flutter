@@ -196,6 +196,12 @@ class ErrorValues {
   static const String DEVICE_ROOTED = 'PIDErrorDeviceRooted';
   static const String WITH_REPAIRING = 'PIDErrorWithRepairing';
   static const String WITH_REPAIRING_TEST_OTP = 'PIDErrorWithRepairingTestOtp';
+  //iOS Only
+  static const String REACHABILITY = "PIDErrorReachability";
+  static const String SERVER_INTERNAL = "PIDErrorServerInternal";
+  static const String WITH_SERVER_PAYLOAD = "PIDErrorWithServerPayload";
+  static const String SELECTION_IS_MISSING = "PIDErrorSelectionIsMissing";
+  static const String MISSING_APP_ID = "PIDErrorMissingAppId";
 
   ErrorValues._();
 }
